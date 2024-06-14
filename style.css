@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#logo {
+  width: 40px;
+  height: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 36px;
+  margin: 0;
+  padding: 40px;
+}
+p {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.header-container {
+  background-image: url("https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  padding-bottom: 40px;
+  margin: 0;
+}
+
+input {
+  border-radius: 30px;
+  padding: 4px 10px;
+  min-width: 200px;
+  max-width: 100%;
+  border-color: #555c6c;
+  border-width: 2px;
+  margin-left: 20px;
+  color: #555c6c;
+}
+
+::placeholder {
+  color: #8f96a0;
+  font-style: italic;
+}
+button {
+  border-radius: 30px;
+  padding: 4px 10px;
+  background-color: #e6edef;
+  border-color: #555c6c;
+  color: #555c6c;
+}
