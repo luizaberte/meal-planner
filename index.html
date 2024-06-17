@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'-->
     <link href="open-sans.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
       * {
@@ -24,10 +23,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-
-    <!--<a href="../Meal planner/main.search.js"></a>-->
     <link rel="stylesheet" href="../Meal planner/style.css" />
-
     <title>Meal Planner</title>
   </head>
   <body>
@@ -40,79 +36,68 @@
         placeholder="Search by recipe or ingredient"
       />
       <button id="searchButton">Search</button>
-      <!-- <img src="../Meal planner/victoria-shes-Qa29U4Crvn4-unsplash.jpg" alt="food" />-->
     </div>
-    <div class="controller-btn">
+    <!--<div class="controller-btn">
       <button id="add-meal">Add to your plan</button>
+    </div>-->
+    <div class="dropdown" id="dropdown">
+      <ul class="list"></ul>
     </div>
     <div class="table" id="table"></div>
+
     <script>
       // Define the API URLs
-      console.log("hey");
       let apiByName = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
       let apiByLetter = "https://www.themealdb.com/api/json/v1/1/search.php?f=";
+
+      // Function to handle search button click
       let onSearchClicked = async () => {
-        let inputSearch = document.getElementById("inputSearch").value;
+        let inputSearch = document.getElementById("inputSearch").value.trim();
         if (inputSearch === "") {
-          alert("Add a name");
+          alert("Please enter a recipe name");
           return;
         }
-        let response = await fetch(apiByName + inputSearch);
-        console.log("respons", response);
-        if (response.ok) {
+        try {
+          let response = await fetch(apiByName + inputSearch);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
           let data = await response.json();
-          console.log(data);
           displayResults(data);
-        } else {
-          console.error("Network response was not ok " + response.statusText);
+        } catch (error) {
+          console.error("Error fetching data:", error);
           alert("An error occurred while fetching the data. Please try again.");
         }
       };
+
+      // Function to display search results
       const displayResults = (data) => {
-        const resultsDiv = document.getElementById("table");
-        resultsDiv.innerHTML = ""; // Clear previous results
+        const resultsDiv = document.getElementById("dropdown");
+        const ul = resultsDiv.querySelector("ul");
+        ul.innerHTML = ""; // Clear previous results
+
         if (data.meals) {
           data.meals.forEach((meal) => {
-            let mealDiv = document.createElement("div");
-            mealDiv.innerHTML = `
-                <h3>${meal.strMeal}</h3>
-                <p>${meal.strInstructions}</p>
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" width="200">
-              `;
-            resultsDiv.appendChild(mealDiv);
+            let markup = `
+            <li>
+              <img src="${meal.strMealThumb}" alt="${meal.strMeal}" >
+              <h3>${meal.strMeal}</h3>
+              <p> Food style: ${meal.strArea}</p>
+              <button id="add-meal">See recipe</button>
+            </li>
+          `;
+            ul.insertAdjacentHTML("beforeend", markup);
           });
         } else {
-          resultsDiv.innerHTML = "<p>No results found</p>";
+          resultsDiv.innerHTML =
+            "<p>Sorry, we didn't find this recipe. Please try another search.</p>";
         }
       };
 
+      // Event listener for search button click
       document
         .getElementById("searchButton")
         .addEventListener("click", onSearchClicked);
-
-      /*let apiByName = "www.themealdb.com/api/json/v1/1/search.php?s=";*/
-      /*let apiByLetter = "www.themealdb.com/api/json/v1/1/search.php?f=";*/
-
-      /*let onSearchClicked = async () => {
-          let foodName = document.getElementById("inputSearch").value;
-          let response = await fetch(
-            "www.themealdb.com/api/json/v1/1/search.php?s=" + foodName
-          );
-          let inputSearch = document.getElementById("inputSearch").value;
-          if (inputSearch === "") {
-            return alert("Add a name");
-          }
-          let data = await response.json();
-          console.log(data);
-          let results = await searchRecipeByIngredient(inputSearch);
-        };
-
-        let getRecipe = async () => {
-          let apiByName = await fetch();
-        };*/
     </script>
-    <!--<script src="/Users/i537254/Javascript/Food project/mealPlaner/luiza.js"></script>-->
-    <!--<input type="text" id="inputSearch" placeholder="Search recipes" />
-    <button onclick="onSearchClicked()">Search</button>-->
   </body>
 </html>
