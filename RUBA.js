@@ -20,7 +20,7 @@ async function showRecipe(mealName) {
 }
 
 function displayMeal(meal) {
-  // Clear previous content
+  
   document.getElementById("meal-image").innerHTML = "";
   document.getElementById("meal-info").innerHTML = "";
 
@@ -39,7 +39,9 @@ function displayMeal(meal) {
 
   let myList = document.createElement("ul");
   myList.id = "listItems";
-  myList.textContent = "Ingredients:";
+  let boldText = document.createElement("span");
+  boldText.innerHTML = "<b>Ingredients:</b><br/>";
+  myList.appendChild(boldText);
   document.getElementById("meal-info").appendChild(myList);
 
   let ingredients = [];
@@ -61,16 +63,28 @@ function displayMeal(meal) {
   description.className = "description";
   description.textContent = "Description: " + meal.strInstructions;
   document.getElementById("meal-info").appendChild(description);
+  // Create a container for the YouTube link and button
+  let actionContainer = document.createElement("div");
+  actionContainer.classList.add("action-container")
 
   let youtubeLink = document.createElement("a");
   youtubeLink.href = meal.strYoutube;
   youtubeLink.textContent = "Instructing video on YouTube";
-  document.getElementById("meal-info").appendChild(youtubeLink);
+  youtubeLink.target = "_blank"; // Open link in a new tab
+  actionContainer.appendChild(youtubeLink);
+
+  let addButton = document.createElement("button");
+  addButton.id = "addToTableButton";
+  addButton.textContent = "Add to planner";
+  actionContainer.appendChild(addButton);
+
+  document.getElementById("meal-info").appendChild(actionContainer);
 
   // Add event listener for "Add to planner" button
   document.getElementById("addToTableButton").onclick = () => {
     addToTable(meal.strMeal, ingredients);
   };
+
 }
 
 // Make showRecipe globally accessible

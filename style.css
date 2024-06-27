@@ -31,7 +31,30 @@ html {
   justify-content: center;
   margin-bottom: 10px;
 }
+.action-container {
+  display: flex;
+  justify-content: space-between;
+}
 /*====================== table section =================== */
+.border {
+  border-bottom: 1px solid #555c6c;
+  /* margin: 15px ; */
+}
+.weekly-planner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: rgb(244 246 247);
+  padding: 15px 0;
+}
+.table-area {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.weekly-planner-title {
+  padding-left: 55px;
+}
 .controller-btn {
   display: flex;
   justify-content: end;
@@ -39,32 +62,36 @@ html {
 .controller-btn > button {
   background: rgb(255, 251, 0);
   color: gray;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 1px;
   cursor: pointer;
 }
 .table {
+  padding: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  margin: 10px 40px;
+  gap: 15px;
+  margin: 20px 15px;
 }
 .header,
 .cell {
   padding: 10px;
-  border: 1px solid #0bf35c;
+  border: 1px solid;
   text-align: center;
 }
 .header {
   font-weight: bold;
-  background-color: #e27d11;
-  color: rgb(0, 56, 0);
+  background-color: rgb(225, 233, 237);
+  color: rgb(0, 2, 0);
 }
 .week-name {
+  border-color: #555c6c;
   font-weight: bold;
-  background-color: hsl(186, 87%, 50%);
-  color: rgb(88, 19, 215);
+  background-color: rgb(225, 233, 237);
+  color: rgb(0, 2, 0);
 }
 .row {
+  color: rgb(0, 2, 0);
   display: contents;
 }
 .item {
@@ -76,7 +103,7 @@ html {
   margin: 5px;
 }
 .item:hover {
-  background-color: #ddd;
+  background-color: #044b5c;
 }
 
 #logo {
@@ -107,7 +134,7 @@ p {
   color: #191b20;
 }
 ul.list {
-  background-color: white;
+  background-color: rgb(244 246 247);
   list-style-type: none;
   padding: 10px;
   display: flex;
@@ -144,7 +171,7 @@ ul.list li img {
 }
 
 .header-container {
-  background-image: url("https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url('https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
   padding: 0;
@@ -246,7 +273,6 @@ button:hover {
 
 #addToTableButton {
   margin: 0 8%;
-  margin-bottom: 20px;
 }
 
 #meal-image {
@@ -276,13 +302,13 @@ button:hover {
   margin: 0;
   float: none;
   text-align: left;
-  background-color: white;
+
   border-radius: 16px;
   display: inline-block;
   font-weight: 400;
   font-size: 14px;
   color: #191b20;
-  padding: 4px 0;
+  padding: 4px;
 }
 
 #meal-info ul li {
@@ -291,7 +317,7 @@ button:hover {
 }
 
 #meal-info ul li:nth-child(1) {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #meal-info ul li:nth-child(2) ~ li {
@@ -324,11 +350,12 @@ button:hover {
   margin-bottom: 16px;
 }
 .selected {
-  background-color: yellow; /* Highlight color */
+  background-color: #77daf3; /* Highlight color */
 }
 
 a {
   border-radius: 30px;
+  border-color: #555c6c;
   padding: 10px;
   background-color: #e6edef;
   color: #044b5c;
@@ -369,4 +396,17 @@ a:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.shoplist-area {
+  display: flex;
+  flex-direction: column;
+  padding-left: 55px;
+}
+#shopping-list {
+  margin-top: 20px;
+}
+.your-result {
+  background-color: rgb(244 246 247);
+  padding: 15px 0;
 }
